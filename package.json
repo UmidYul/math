@@ -1,0 +1,16 @@
+{
+  "name": "math",
+  "version": "1.0.0",
+  "description": "Simple Express server for the math HTML page",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "node api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
