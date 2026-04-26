@@ -1,1042 +1,1403 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Высшая математика — 2 семестр</title>
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']],
-    packages: {'[+]': ['ams']},
-    tags: 'none'
-  },
-  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
-};
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1a2e;
-    --ink-light: #3d3d5c;
-    --ink-faint: #6b6b8a;
-    --accent: #8b1a1a;
-    --accent-light: #c0392b;
-    --gold: #b8960c;
-    --gold-light: #d4af37;
-    --paper: #faf8f3;
-    --paper-warm: #f5f0e8;
-    --rule: #d4c9b0;
-    --rule-accent: #c0a882;
-    --table-head: #2c2c4a;
-    --table-row-alt: #f0ece2;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Высшая математика — 2 семестр</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: { '[+]': ['ams'] },
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --ink-light: #3d3d5c;
+      --ink-faint: #6b6b8a;
+      --accent: #8b1a1a;
+      --accent-light: #c0392b;
+      --gold: #b8960c;
+      --gold-light: #d4af37;
+      --paper: #faf8f3;
+      --paper-warm: #f5f0e8;
+      --rule: #d4c9b0;
+      --rule-accent: #c0a882;
+      --table-head: #2c2c4a;
+      --table-row-alt: #f0ece2;
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 17px;
-    line-height: 1.85;
-    padding: 0;
-  }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.85;
+      padding: 0;
+    }
 
-  /* ── Cover ── */
-  .cover {
-    background: var(--table-head);
-    color: #e8e0d0;
-    text-align: center;
-    padding: 72px 40px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .cover::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.04) 40px),
-      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.04) 40px);
-  }
-  .cover-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 12px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    opacity: .9;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .cover h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(28px, 5vw, 46px);
-    letter-spacing: 1px;
-    line-height: 1.25;
-    color: #f0ece0;
-    position: relative;
-    margin-bottom: 12px;
-  }
-  .cover-sub {
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 20px;
-    color: var(--gold-light);
-    opacity: .85;
-    position: relative;
-    margin-top: 8px;
-  }
-  .cover-rule {
-    width: 80px;
-    height: 2px;
-    background: var(--gold-light);
-    margin: 28px auto 0;
-    position: relative;
-    opacity: .7;
-  }
+    /* ── Cover ── */
+    .cover {
+      background: var(--table-head);
+      color: #e8e0d0;
+      text-align: center;
+      padding: 72px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
 
-  /* ── TOC ── */
-  .toc-wrap {
-    max-width: 780px;
-    margin: 52px auto;
-    padding: 0 40px;
-  }
-  .toc-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 10px;
-    margin-bottom: 18px;
-  }
-  .toc-list { list-style: none; }
-  .toc-list li {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    padding: 5px 0;
-    font-size: 16px;
-  }
-  .toc-num {
-    font-family: 'Fira Code', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    min-width: 24px;
-  }
-  .toc-dots {
-    flex: 1;
-    border-bottom: 1px dotted var(--rule-accent);
-    margin-bottom: 4px;
-  }
-  .toc-pg {
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    color: var(--ink-faint);
-  }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255, 255, 255, .04) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255, 255, 255, .04) 40px);
+    }
 
-  /* ── Main content ── */
-  .content {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 40px 80px;
-  }
+    .cover-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: .9;
+      margin-bottom: 20px;
+      position: relative;
+    }
 
-  /* ── Topic block ── */
-  .topic {
-    margin-bottom: 64px;
-    padding-top: 16px;
-  }
-  .topic-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 32px;
-    padding-bottom: 18px;
-    border-bottom: 2px solid var(--ink);
-    position: relative;
-  }
-  .topic-header::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--accent);
-  }
-  .topic-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 52px;
-    color: var(--rule);
-    line-height: 1;
-    min-width: 56px;
-    letter-spacing: -2px;
-    user-select: none;
-  }
-  .topic-title-block {}
-  .topic-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-  .topic-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: clamp(18px, 3vw, 24px);
-    line-height: 1.3;
-    color: var(--ink);
-  }
+    .cover h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(28px, 5vw, 46px);
+      letter-spacing: 1px;
+      line-height: 1.25;
+      color: #f0ece0;
+      position: relative;
+      margin-bottom: 12px;
+    }
 
-  /* ── Subsections ── */
-  h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--ink);
-    margin: 28px 0 12px;
-    padding-left: 14px;
-    border-left: 3px solid var(--accent);
-  }
+    .cover-sub {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--gold-light);
+      opacity: .85;
+      position: relative;
+      margin-top: 8px;
+    }
 
-  p {
-    margin-bottom: 14px;
-    text-align: justify;
-    hyphens: auto;
-  }
+    .cover-rule {
+      width: 80px;
+      height: 2px;
+      background: var(--gold-light);
+      margin: 28px auto 0;
+      position: relative;
+      opacity: .7;
+    }
 
-  /* ── Math display ── */
-  .math-block {
-    background: var(--paper-warm);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 6px 6px 0;
-    padding: 16px 22px;
-    margin: 18px 0;
-    overflow-x: auto;
-  }
-  .math-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
+    /* ── TOC ── */
+    .toc-wrap {
+      max-width: 780px;
+      margin: 52px auto;
+      padding: 0 40px;
+    }
 
-  /* ── Key formulas table ── */
-  .formula-table-wrap {
-    margin: 32px 0 8px;
-    border: 1px solid var(--rule-accent);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .formula-table-title {
-    background: var(--table-head);
-    color: #e8e0d0;
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 10px 18px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 15.5px;
-  }
-  thead th {
-    background: #3d3d5c;
-    color: #ddd8cc;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1px;
-    padding: 10px 16px;
-    text-align: left;
-    border-bottom: 2px solid var(--gold);
-  }
-  tbody tr:nth-child(even) { background: var(--table-row-alt); }
-  tbody tr:nth-child(odd) { background: var(--paper); }
-  tbody td {
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--rule);
-    vertical-align: middle;
-  }
-  tbody td:first-child {
-    font-style: italic;
-    color: var(--ink-light);
-    white-space: nowrap;
-    font-size: 15px;
-  }
-  tbody tr:last-child td { border-bottom: none; }
+    .toc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+    }
 
-  /* ── Note/definition box ── */
-  .note {
-    background: #edf2f7;
-    border: 1px solid #b0c4d8;
-    border-radius: 5px;
-    padding: 14px 18px;
-    margin: 16px 0;
-    font-size: 15.5px;
-    color: #1a2a3a;
-  }
-  .note strong {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    color: #1a3a5a;
-    font-size: 16px;
-  }
+    .toc-list {
+      list-style: none;
+    }
 
-  /* ── Divider ── */
-  .topic-divider {
-    border: none;
-    border-top: 1px solid var(--rule);
-    margin: 60px 0;
-  }
+    .toc-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 5px 0;
+      font-size: 16px;
+    }
 
-  /* ── Footer ── */
-  footer {
-    text-align: center;
-    padding: 30px 20px 50px;
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--ink-faint);
-    border-top: 1px solid var(--rule);
-  }
+    .toc-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      min-width: 24px;
+    }
 
-  @media print {
-    body { background: white; font-size: 13px; }
-    .cover { padding: 40px 20px; }
-    .topic { page-break-inside: avoid; }
-    .formula-table-wrap { page-break-inside: avoid; }
-    .content { padding: 0 20px 40px; }
-  }
-  @media (max-width: 600px) {
-    .content, .toc-wrap { padding: 0 20px 60px; }
-    .topic-num { font-size: 38px; min-width: 40px; }
-    table { font-size: 13.5px; }
-    thead th, tbody td { padding: 8px 10px; }
-  }
-</style>
+    .toc-dots {
+      flex: 1;
+      border-bottom: 1px dotted var(--rule-accent);
+      margin-bottom: 4px;
+    }
+
+    .toc-pg {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+    }
+
+    /* ── Main content ── */
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* ── Topic block ── */
+    .topic {
+      margin-bottom: 64px;
+      padding-top: 16px;
+    }
+
+    .topic-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .topic-header::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .topic-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 52px;
+      color: var(--rule);
+      line-height: 1;
+      min-width: 56px;
+      letter-spacing: -2px;
+      user-select: none;
+    }
+
+    .topic-title-block {}
+
+    .topic-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .topic-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(18px, 3vw, 24px);
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    /* ── Subsections ── */
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--ink);
+      margin: 28px 0 12px;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+    }
+
+    p {
+      margin-bottom: 14px;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* ── Math display ── */
+    .math-block {
+      background: var(--paper-warm);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 16px 22px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .math-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    /* ── Key formulas table ── */
+    .formula-table-wrap {
+      margin: 32px 0 8px;
+      border: 1px solid var(--rule-accent);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .formula-table-title {
+      background: var(--table-head);
+      color: #e8e0d0;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 10px 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15.5px;
+    }
+
+    thead th {
+      background: #3d3d5c;
+      color: #ddd8cc;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1px;
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--table-row-alt);
+    }
+
+    tbody tr:nth-child(odd) {
+      background: var(--paper);
+    }
+
+    tbody td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: middle;
+    }
+
+    tbody td:first-child {
+      font-style: italic;
+      color: var(--ink-light);
+      white-space: nowrap;
+      font-size: 15px;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── Note/definition box ── */
+    .note {
+      background: #edf2f7;
+      border: 1px solid #b0c4d8;
+      border-radius: 5px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 15.5px;
+      color: #1a2a3a;
+    }
+
+    .note strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: #1a3a5a;
+      font-size: 16px;
+    }
+
+    /* ── Divider ── */
+    .topic-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 60px 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 30px 20px 50px;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--ink-faint);
+      border-top: 1px solid var(--rule);
+    }
+
+    @media print {
+      body {
+        background: white;
+        font-size: 13px;
+      }
+
+      .cover {
+        padding: 40px 20px;
+      }
+
+      .topic {
+        page-break-inside: avoid;
+      }
+
+      .formula-table-wrap {
+        page-break-inside: avoid;
+      }
+
+      .content {
+        padding: 0 20px 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .content,
+      .toc-wrap {
+        padding: 0 20px 60px;
+      }
+
+      .topic-num {
+        font-size: 38px;
+        min-width: 40px;
+      }
+
+      table {
+        font-size: 13.5px;
+      }
+
+      thead th,
+      tbody td {
+        padding: 8px 10px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════ COVER ═══════════════════════════════ -->
-<div class="cover">
-  <div class="cover-label">Конспект лекций</div>
-  <h1>Высшая математика</h1>
-  <div class="cover-sub">2 семестр · Темы 1–6</div>
-  <div class="cover-rule"></div>
-</div>
+  <!-- ═══════════════════════════════ COVER ═══════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-label">Конспект лекций</div>
+    <h1>Высшая математика</h1>
+    <div class="cover-sub">2 семестр · Темы 1–11</div>
+    <div class="cover-rule"></div>
+  </div>
 
-<!-- ═══════════════════════════════ TOC ════════════════════════════════ -->
-<div class="toc-wrap">
-  <div class="toc-title">Содержание</div>
-  <ul class="toc-list">
-    <li><span class="toc-num">01</span>Комплексные числа: степень, корень, формула Эйлера<span class="toc-dots"></span><span class="toc-pg">§1</span></li>
-    <li><span class="toc-num">02</span>Ряды Фурье на интервале $[0,\pi]$<span class="toc-dots"></span><span class="toc-pg">§2</span></li>
-    <li><span class="toc-num">03</span>Движение тела. Законы Кеплера<span class="toc-dots"></span><span class="toc-pg">§3</span></li>
-    <li><span class="toc-num">04</span>Функции нескольких переменных<span class="toc-dots"></span><span class="toc-pg">§4</span></li>
-    <li><span class="toc-num">05</span>Условный и безусловный экстремум. Множители Лагранжа<span class="toc-dots"></span><span class="toc-pg">§5</span></li>
-    <li><span class="toc-num">06</span>Экстремум в замкнутой области<span class="toc-dots"></span><span class="toc-pg">§6</span></li>
-    <li><span class="toc-num">07</span>Тройной интеграл. Декартовы координаты<span class="toc-dots"></span><span class="toc-pg">§7</span></li>
-    <li><span class="toc-num">08</span>Геометрические и физические приложения двойного интеграла<span class="toc-dots"></span><span class="toc-pg">§8</span></li>
-    <li><span class="toc-num">09</span>Параметрические поверхности. Поверхности вращения<span class="toc-dots"></span><span class="toc-pg">§9</span></li>
-    <li><span class="toc-num">10</span>Дивергенция. Поток. Теорема Остроградского<span class="toc-dots"></span><span class="toc-pg">§10</span></li>
-    <li><span class="toc-num">11</span>Потенциальные и соленоидальные поля<span class="toc-dots"></span><span class="toc-pg">§11</span></li>
-  </ul>
-</div>
+  <!-- ═══════════════════════════════ TOC ════════════════════════════════ -->
+  <div class="toc-wrap">
+    <div class="toc-title">Содержание</div>
+    <ul class="toc-list">
+      <li><span class="toc-num">01</span>Комплексные числа: степень, корень, формула Эйлера<span
+          class="toc-dots"></span><span class="toc-pg">§1</span></li>
+      <li><span class="toc-num">02</span>Ряды Фурье на интервале $[0,\pi]$<span class="toc-dots"></span><span
+          class="toc-pg">§2</span></li>
+      <li><span class="toc-num">03</span>Движение тела. Законы Кеплера<span class="toc-dots"></span><span
+          class="toc-pg">§3</span></li>
+      <li><span class="toc-num">04</span>Функции нескольких переменных<span class="toc-dots"></span><span
+          class="toc-pg">§4</span></li>
+      <li><span class="toc-num">05</span>Условный и безусловный экстремум. Множители Лагранжа<span
+          class="toc-dots"></span><span class="toc-pg">§5</span></li>
+      <li><span class="toc-num">06</span>Экстремум в замкнутой области<span class="toc-dots"></span><span
+          class="toc-pg">§6</span></li>
+      <li><span class="toc-num">07</span>Тройной интеграл. Декартовы координаты<span class="toc-dots"></span><span
+          class="toc-pg">§7</span></li>
+      <li><span class="toc-num">08</span>Геометрические и физические приложения двойного интеграла<span
+          class="toc-dots"></span><span class="toc-pg">§8</span></li>
+      <li><span class="toc-num">09</span>Параметрические поверхности. Поверхности вращения<span
+          class="toc-dots"></span><span class="toc-pg">§9</span></li>
+      <li><span class="toc-num">10</span>Дивергенция. Поток. Теорема Остроградского<span class="toc-dots"></span><span
+          class="toc-pg">§10</span></li>
+      <li><span class="toc-num">11</span>Потенциальные и соленоидальные поля<span class="toc-dots"></span><span
+          class="toc-pg">§11</span></li>
+    </ul>
+  </div>
 
-<!-- ═══════════════════════════════ CONTENT ════════════════════════════ -->
-<div class="content">
+  <!-- ═══════════════════════════════ CONTENT ════════════════════════════ -->
+  <div class="content">
 
-<!-- ─────────────────────────── ТЕМА 1 ─────────────────────────────── -->
-<div class="topic" id="t1">
-  <div class="topic-header">
-    <div class="topic-num">01</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема первая</div>
-      <div class="topic-title">Возведение комплексного числа в степень. Извлечение корня. Показательная функция. Формула Эйлера</div>
+    <!-- ─────────────────────────── ТЕМА 1 ─────────────────────────────── -->
+    <div class="topic" id="t1">
+      <div class="topic-header">
+        <div class="topic-num">01</div>
+        <div class="topic-title-block">
+          <div class="topic-label">Тема первая</div>
+          <div class="topic-title">Возведение комплексного числа в степень. Извлечение корня. Показательная функция.
+            Формула Эйлера</div>
+        </div>
+      </div>
+
+      <h3>1.1 Тригонометрическая форма</h3>
+      <p>Комплексное число $z = x + iy$ может быть записано в тригонометрической форме:</p>
+      <div class="math-block">
+        <div class="math-label">Определение</div>
+        $$z = r(\cos\varphi + i\sin\varphi), \quad r = |z| = \sqrt{x^2 + y^2}, \quad \varphi = \arg z$$
+      </div>
+      <p>Модуль $r$ задаёт удалённость числа от начала координат на комплексной плоскости, аргумент $\varphi$ — угол с
+        положительным направлением вещественной оси.</p>
+
+      <h3>1.2 Формула Эйлера</h3>
+      <p>Формула Эйлера устанавливает фундаментальную связь между показательной и тригонометрической функциями:</p>
+      <div class="math-block">
+        <div class="math-label">Формула Эйлера</div>
+        $$e^{i\varphi} = \cos\varphi + i\sin\varphi$$
+      </div>
+      <p>Благодаря этому любое комплексное число записывается в <em>показательной форме</em> $z = re^{i\varphi}$,
+        которая наиболее удобна при алгебраических операциях.</p>
+
+      <h3>1.3 Возведение в степень. Формула Муавра</h3>
+      <p>При возведении комплексного числа в целую степень $n$ модуль возводится в ту же степень, а аргумент умножается
+        на $n$:</p>
+      <div class="math-block">
+        <div class="math-label">Формула Муавра</div>
+        $$z^n = r^n(\cos n\varphi + i\sin n\varphi) = r^n e^{in\varphi}$$
+      </div>
+      <p>Формула справедлива для любого целого $n$, в том числе отрицательного.</p>
+
+      <h3>1.4 Извлечение корня $n$-й степени</h3>
+      <p>Операция извлечения корня даёт в общем случае <em>ровно $n$ различных значений</em>:</p>
+      <div class="math-block">
+        <div class="math-label">Корень n-й степени</div>
+        $$w_k = \sqrt[n]{r}\left(\cos\dfrac{\varphi + 2\pi k}{n} + i\sin\dfrac{\varphi + 2\pi k}{n}\right), \quad k = 0,
+        1, \ldots, n-1$$
+      </div>
+      <p><strong>Геометрический смысл:</strong> все $n$ корней располагаются в вершинах правильного $n$-угольника,
+        вписанного в окружность радиуса $\sqrt[n]{r}$, равномерно разделяя её.</p>
+
+      <h3>1.5 Показательная функция комплексного переменного</h3>
+      <p>Для комплексного числа $z = x + iy$ показательная функция определяется как:</p>
+      <div class="math-block">
+        <div class="math-label">Определение</div>
+        $$e^z = e^{x+iy} = e^x(\cos y + i\sin y)$$
+      </div>
+      <p>Основные свойства: $|e^z| = e^x$; $\arg(e^z) = y$; $e^{z_1+z_2} = e^{z_1}\cdot e^{z_2}$; функция
+        <em>периодична</em> с периодом $2\pi i$.</p>
+
+      <div class="formula-table-wrap">
+        <div class="formula-table-title">Ключевые формулы — Тема 1</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Операция</th>
+              <th>Формула</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Показательная форма</td>
+              <td>$z = re^{i\varphi}$</td>
+            </tr>
+            <tr>
+              <td>Формула Эйлера</td>
+              <td>$e^{i\varphi} = \cos\varphi + i\sin\varphi$</td>
+            </tr>
+            <tr>
+              <td>Степень (Муавр)</td>
+              <td>$z^n = r^n e^{in\varphi}$</td>
+            </tr>
+            <tr>
+              <td>Корень $n$-й степени</td>
+              <td>$w_k = \sqrt[n]{r}\,e^{i\frac{\varphi+2\pi k}{n}},\; k=0,\ldots,n-1$</td>
+            </tr>
+            <tr>
+              <td>Показательная функция</td>
+              <td>$e^{x+iy} = e^x(\cos y + i\sin y)$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <h3>1.1 Тригонометрическая форма</h3>
-  <p>Комплексное число $z = x + iy$ может быть записано в тригонометрической форме:</p>
-  <div class="math-block">
-    <div class="math-label">Определение</div>
-    $$z = r(\cos\varphi + i\sin\varphi), \quad r = |z| = \sqrt{x^2 + y^2}, \quad \varphi = \arg z$$
-  </div>
-  <p>Модуль $r$ задаёт удалённость числа от начала координат на комплексной плоскости, аргумент $\varphi$ — угол с положительным направлением вещественной оси.</p>
+    <hr class="topic-divider">
 
-  <h3>1.2 Формула Эйлера</h3>
-  <p>Формула Эйлера устанавливает фундаментальную связь между показательной и тригонометрической функциями:</p>
-  <div class="math-block">
-    <div class="math-label">Формула Эйлера</div>
-    $$e^{i\varphi} = \cos\varphi + i\sin\varphi$$
-  </div>
-  <p>Благодаря этому любое комплексное число записывается в <em>показательной форме</em> $z = re^{i\varphi}$, которая наиболее удобна при алгебраических операциях.</p>
+    <!-- ─────────────────────────── ТЕМА 2 ─────────────────────────────── -->
+    <div class="topic" id="t2">
+      <div class="topic-header">
+        <div class="topic-num">02</div>
+        <div class="topic-title-block">
+          <div class="topic-label">Тема вторая</div>
+          <div class="topic-title">Приложения рядов Фурье на $[0,\pi]$. Разложение по синусам и косинусам</div>
+        </div>
+      </div>
 
-  <h3>1.3 Возведение в степень. Формула Муавра</h3>
-  <p>При возведении комплексного числа в целую степень $n$ модуль возводится в ту же степень, а аргумент умножается на $n$:</p>
-  <div class="math-block">
-    <div class="math-label">Формула Муавра</div>
-    $$z^n = r^n(\cos n\varphi + i\sin n\varphi) = r^n e^{in\varphi}$$
-  </div>
-  <p>Формула справедлива для любого целого $n$, в том числе отрицательного.</p>
+      <h3>2.1 Ряд Фурье на $[-\pi, \pi]$</h3>
+      <p>Любая кусочно-непрерывная функция $f(x)$, заданная на $[-\pi, \pi]$, может быть разложена в ряд Фурье:</p>
+      <div class="math-block">
+        <div class="math-label">Ряд Фурье</div>
+        $$f(x) = \dfrac{a_0}{2} + \sum_{n=1}^{\infty}(a_n \cos nx + b_n \sin nx)$$
+      </div>
+      <p>Коэффициенты Фурье вычисляются по формулам:</p>
+      <div class="math-block">
+        <div class="math-label">Коэффициенты Фурье</div>
+        $$a_n = \dfrac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos nx\, dx, \qquad b_n = \dfrac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin
+        nx\, dx$$
+      </div>
 
-  <h3>1.4 Извлечение корня $n$-й степени</h3>
-  <p>Операция извлечения корня даёт в общем случае <em>ровно $n$ различных значений</em>:</p>
-  <div class="math-block">
-    <div class="math-label">Корень n-й степени</div>
-    $$w_k = \sqrt[n]{r}\left(\cos\dfrac{\varphi + 2\pi k}{n} + i\sin\dfrac{\varphi + 2\pi k}{n}\right), \quad k = 0, 1, \ldots, n-1$$
-  </div>
-  <p><strong>Геометрический смысл:</strong> все $n$ корней располагаются в вершинах правильного $n$-угольника, вписанного в окружность радиуса $\sqrt[n]{r}$, равномерно разделяя её.</p>
+      <h3>2.2 Разложение по синусам на $[0,\pi]$</h3>
+      <p>Если требуется разложить функцию $f(x)$, заданную лишь на $[0,\pi]$, <em>только по синусам</em>, следует
+        продолжить её нечётным образом на $[-\pi, 0]$. Тогда $a_n = 0$ для всех $n$, и ряд принимает вид:</p>
+      <div class="math-block">
+        <div class="math-label">Разложение по синусам</div>
+        $$f(x) = \sum_{n=1}^{\infty} b_n \sin nx, \qquad b_n = \dfrac{2}{\pi}\int_{0}^{\pi} f(x)\sin nx\, dx$$
+      </div>
 
-  <h3>1.5 Показательная функция комплексного переменного</h3>
-  <p>Для комплексного числа $z = x + iy$ показательная функция определяется как:</p>
-  <div class="math-block">
-    <div class="math-label">Определение</div>
-    $$e^z = e^{x+iy} = e^x(\cos y + i\sin y)$$
-  </div>
-  <p>Основные свойства: $|e^z| = e^x$; $\arg(e^z) = y$; $e^{z_1+z_2} = e^{z_1}\cdot e^{z_2}$; функция <em>периодична</em> с периодом $2\pi i$.</p>
+      <h3>2.3 Разложение по косинусам на $[0,\pi]$</h3>
+      <p>При чётном продолжении функции на $[-\pi, 0]$ все коэффициенты $b_n = 0$, и получается разложение только по
+        косинусам:</p>
+      <div class="math-block">
+        <div class="math-label">Разложение по косинусам</div>
+        $$f(x) = \dfrac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx, \qquad a_n = \dfrac{2}{\pi}\int_{0}^{\pi} f(x)\cos
+        nx\, dx$$
+      </div>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 1</div>
-    <table>
-      <thead><tr><th>Операция</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Показательная форма</td><td>$z = re^{i\varphi}$</td></tr>
-        <tr><td>Формула Эйлера</td><td>$e^{i\varphi} = \cos\varphi + i\sin\varphi$</td></tr>
-        <tr><td>Степень (Муавр)</td><td>$z^n = r^n e^{in\varphi}$</td></tr>
-        <tr><td>Корень $n$-й степени</td><td>$w_k = \sqrt[n]{r}\,e^{i\frac{\varphi+2\pi k}{n}},\; k=0,\ldots,n-1$</td></tr>
-        <tr><td>Показательная функция</td><td>$e^{x+iy} = e^x(\cos y + i\sin y)$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+      <h3>2.4 Теорема Дирихле (условие сходимости)</h3>
+      <div class="note">
+        <strong>Теорема.</strong> Если $f(x)$ — кусочно-монотонная функция с конечным числом точек разрыва первого рода,
+        то её ряд Фурье сходится к $f(x)$ в точках непрерывности и к $\dfrac{f(x^-)+f(x^+)}{2}$ в точках разрыва.
+      </div>
 
-<hr class="topic-divider">
-
-<!-- ─────────────────────────── ТЕМА 2 ─────────────────────────────── -->
-<div class="topic" id="t2">
-  <div class="topic-header">
-    <div class="topic-num">02</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема вторая</div>
-      <div class="topic-title">Приложения рядов Фурье на $[0,\pi]$. Разложение по синусам и косинусам</div>
+      <div class="formula-table-wrap">
+        <div class="formula-table-title">Ключевые формулы — Тема 2</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Тип разложения</th>
+              <th>Коэффициенты</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>По синусам и косинусам $[-\pi,\pi]$</td>
+              <td>$a_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f\cos nx\,dx$, $\;b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f\sin
+                nx\,dx$</td>
+            </tr>
+            <tr>
+              <td>По синусам $[0,\pi]$</td>
+              <td>$b_n = \dfrac{2}{\pi}\int_0^{\pi}f(x)\sin nx\,dx$</td>
+            </tr>
+            <tr>
+              <td>По косинусам $[0,\pi]$</td>
+              <td>$a_n = \dfrac{2}{\pi}\int_0^{\pi}f(x)\cos nx\,dx$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <h3>2.1 Ряд Фурье на $[-\pi, \pi]$</h3>
-  <p>Любая кусочно-непрерывная функция $f(x)$, заданная на $[-\pi, \pi]$, может быть разложена в ряд Фурье:</p>
-  <div class="math-block">
-    <div class="math-label">Ряд Фурье</div>
-    $$f(x) = \dfrac{a_0}{2} + \sum_{n=1}^{\infty}(a_n \cos nx + b_n \sin nx)$$
-  </div>
-  <p>Коэффициенты Фурье вычисляются по формулам:</p>
-  <div class="math-block">
-    <div class="math-label">Коэффициенты Фурье</div>
-    $$a_n = \dfrac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos nx\, dx, \qquad b_n = \dfrac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin nx\, dx$$
-  </div>
+    <hr class="topic-divider">
 
-  <h3>2.2 Разложение по синусам на $[0,\pi]$</h3>
-  <p>Если требуется разложить функцию $f(x)$, заданную лишь на $[0,\pi]$, <em>только по синусам</em>, следует продолжить её нечётным образом на $[-\pi, 0]$. Тогда $a_n = 0$ для всех $n$, и ряд принимает вид:</p>
-  <div class="math-block">
-    <div class="math-label">Разложение по синусам</div>
-    $$f(x) = \sum_{n=1}^{\infty} b_n \sin nx, \qquad b_n = \dfrac{2}{\pi}\int_{0}^{\pi} f(x)\sin nx\, dx$$
-  </div>
+    <!-- ─────────────────────────── ТЕМА 3 ─────────────────────────────── -->
+    <div class="topic" id="t3">
+      <div class="topic-header">
+        <div class="topic-num">03</div>
+        <div class="topic-title-block">
+          <div class="topic-label">Тема третья</div>
+          <div class="topic-title">Движение тела по течению. Ускорение и его составляющие. Законы Кеплера</div>
+        </div>
+      </div>
 
-  <h3>2.3 Разложение по косинусам на $[0,\pi]$</h3>
-  <p>При чётном продолжении функции на $[-\pi, 0]$ все коэффициенты $b_n = 0$, и получается разложение только по косинусам:</p>
-  <div class="math-block">
-    <div class="math-label">Разложение по косинусам</div>
-    $$f(x) = \dfrac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx, \qquad a_n = \dfrac{2}{\pi}\int_{0}^{\pi} f(x)\cos nx\, dx$$
-  </div>
+      <h3>3.1 Векторное описание движения</h3>
+      <p>Положение тела в пространстве задаётся радиус-вектором $\mathbf{r}(t)$. Скорость и ускорение определяются как
+        производные:</p>
+      <div class="math-block">
+        <div class="math-label">Скорость и ускорение</div>
+        $$\mathbf{v} = \dot{\mathbf{r}} = \dfrac{d\mathbf{r}}{dt}, \qquad \mathbf{a} = \dot{\mathbf{v}} =
+        \ddot{\mathbf{r}} = \dfrac{d^2\mathbf{r}}{dt^2}$$
+      </div>
 
-  <h3>2.4 Теорема Дирихле (условие сходимости)</h3>
-  <div class="note">
-    <strong>Теорема.</strong> Если $f(x)$ — кусочно-монотонная функция с конечным числом точек разрыва первого рода, то её ряд Фурье сходится к $f(x)$ в точках непрерывности и к $\dfrac{f(x^-)+f(x^+)}{2}$ в точках разрыва.
-  </div>
+      <h3>3.2 Разложение ускорения по естественным осям</h3>
+      <p>Ускорение точки при криволинейном движении раскладывается на два компонента — <em>касательный</em>
+        (тангенциальный) и <em>нормальный</em> (центростремительный):</p>
+      <div class="math-block">
+        <div class="math-label">Составляющие ускорения</div>
+        $$\mathbf{a} = a_\tau\,\boldsymbol{\tau} + a_n\,\mathbf{n}$$
+        $$a_\tau = \dfrac{dv}{dt} = \dot{v}, \qquad a_n = \dfrac{v^2}{R}$$
+      </div>
+      <p>Здесь $v = |\mathbf{v}|$ — скорость, $R$ — радиус кривизны траектории в данной точке, $\boldsymbol{\tau}$ —
+        единичный касательный вектор, $\mathbf{n}$ — единичный вектор главной нормали.</p>
+      <p>Полное ускорение: $|\mathbf{a}| = \sqrt{a_\tau^2 + a_n^2}$.</p>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 2</div>
-    <table>
-      <thead><tr><th>Тип разложения</th><th>Коэффициенты</th></tr></thead>
-      <tbody>
-        <tr><td>По синусам и косинусам $[-\pi,\pi]$</td><td>$a_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f\cos nx\,dx$, $\;b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}f\sin nx\,dx$</td></tr>
-        <tr><td>По синусам $[0,\pi]$</td><td>$b_n = \dfrac{2}{\pi}\int_0^{\pi}f(x)\sin nx\,dx$</td></tr>
-        <tr><td>По косинусам $[0,\pi]$</td><td>$a_n = \dfrac{2}{\pi}\int_0^{\pi}f(x)\cos nx\,dx$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+      <h3>3.3 Движение тела в поле тяготения</h3>
+      <p>Тело, брошенное под углом к горизонту (или движущееся «по течению»), подчиняется уравнениям:</p>
+      <div class="math-block">
+        <div class="math-label">Уравнения движения (без сопротивления)</div>
+        $$x(t) = v_0\cos\alpha \cdot t, \qquad y(t) = v_0\sin\alpha \cdot t - \dfrac{g t^2}{2}$$
+      </div>
+      <p>Дальность полёта и время достижения максимума высоты:</p>
+      <div class="math-block">
+        $$L = \dfrac{v_0^2 \sin 2\alpha}{g}, \qquad t_{\max} = \dfrac{v_0\sin\alpha}{g}$$
+      </div>
 
-<hr class="topic-divider">
+      <h3>3.4 Законы Кеплера</h3>
+      <div class="note">
+        <strong>I закон (эллипса).</strong> Каждая планета движется по эллипсу, в одном из фокусов которого находится
+        Солнце.
+      </div>
+      <div class="note">
+        <strong>II закон (площадей).</strong> Радиус-вектор планеты за равные промежутки времени заметает равные
+        площади:
+        $$\dfrac{dS}{dt} = \dfrac{1}{2}\,|\mathbf{r} \times \mathbf{v}| = \text{const}$$
+      </div>
+      <div class="note">
+        <strong>III закон (гармонический).</strong> Квадраты периодов обращения планет относятся как кубы больших
+        полуосей их орбит:
+        $$\dfrac{T_1^2}{T_2^2} = \dfrac{a_1^3}{a_2^3}$$
+      </div>
 
-<!-- ─────────────────────────── ТЕМА 3 ─────────────────────────────── -->
-<div class="topic" id="t3">
-  <div class="topic-header">
-    <div class="topic-num">03</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема третья</div>
-      <div class="topic-title">Движение тела по течению. Ускорение и его составляющие. Законы Кеплера</div>
+      <div class="formula-table-wrap">
+        <div class="formula-table-title">Ключевые формулы — Тема 3</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Величина</th>
+              <th>Формула</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Тангенциальное ускорение</td>
+              <td>$a_\tau = \dot{v}$</td>
+            </tr>
+            <tr>
+              <td>Нормальное ускорение</td>
+              <td>$a_n = v^2/R$</td>
+            </tr>
+            <tr>
+              <td>Полное ускорение</td>
+              <td>$|\mathbf{a}| = \sqrt{a_\tau^2 + a_n^2}$</td>
+            </tr>
+            <tr>
+              <td>Дальность полёта</td>
+              <td>$L = v_0^2\sin2\alpha\,/\,g$</td>
+            </tr>
+            <tr>
+              <td>III закон Кеплера</td>
+              <td>$T^2/a^3 = \mathrm{const}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <h3>3.1 Векторное описание движения</h3>
-  <p>Положение тела в пространстве задаётся радиус-вектором $\mathbf{r}(t)$. Скорость и ускорение определяются как производные:</p>
-  <div class="math-block">
-    <div class="math-label">Скорость и ускорение</div>
-    $$\mathbf{v} = \dot{\mathbf{r}} = \dfrac{d\mathbf{r}}{dt}, \qquad \mathbf{a} = \dot{\mathbf{v}} = \ddot{\mathbf{r}} = \dfrac{d^2\mathbf{r}}{dt^2}$$
-  </div>
+    <hr class="topic-divider">
 
-  <h3>3.2 Разложение ускорения по естественным осям</h3>
-  <p>Ускорение точки при криволинейном движении раскладывается на два компонента — <em>касательный</em> (тангенциальный) и <em>нормальный</em> (центростремительный):</p>
-  <div class="math-block">
-    <div class="math-label">Составляющие ускорения</div>
-    $$\mathbf{a} = a_\tau\,\boldsymbol{\tau} + a_n\,\mathbf{n}$$
-    $$a_\tau = \dfrac{dv}{dt} = \dot{v}, \qquad a_n = \dfrac{v^2}{R}$$
-  </div>
-  <p>Здесь $v = |\mathbf{v}|$ — скорость, $R$ — радиус кривизны траектории в данной точке, $\boldsymbol{\tau}$ — единичный касательный вектор, $\mathbf{n}$ — единичный вектор главной нормали.</p>
-  <p>Полное ускорение: $|\mathbf{a}| = \sqrt{a_\tau^2 + a_n^2}$.</p>
+    <!-- ─────────────────────────── ТЕМА 4 ─────────────────────────────── -->
+    <div class="topic" id="t4">
+      <div class="topic-header">
+        <div class="topic-num">04</div>
+        <div class="topic-title-block">
+          <div class="topic-label">Тема четвёртая</div>
+          <div class="topic-title">Функции нескольких переменных. Частные производные. Экономические задачи</div>
+        </div>
+      </div>
 
-  <h3>3.3 Движение тела в поле тяготения</h3>
-  <p>Тело, брошенное под углом к горизонту (или движущееся «по течению»), подчиняется уравнениям:</p>
-  <div class="math-block">
-    <div class="math-label">Уравнения движения (без сопротивления)</div>
-    $$x(t) = v_0\cos\alpha \cdot t, \qquad y(t) = v_0\sin\alpha \cdot t - \dfrac{g t^2}{2}$$
-  </div>
-  <p>Дальность полёта и время достижения максимума высоты:</p>
-  <div class="math-block">
-    $$L = \dfrac{v_0^2 \sin 2\alpha}{g}, \qquad t_{\max} = \dfrac{v_0\sin\alpha}{g}$$
-  </div>
+      <h3>4.1 Основные понятия</h3>
+      <p>Функция $z = f(x, y)$ ставит в соответствие каждой точке $(x, y)$ области $D \subset \mathbb{R}^2$ единственное
+        вещественное число $z$. Область $D$ называется <em>областью определения</em>.</p>
+      <p><strong>Полный дифференциал</strong> функции $f(x,y)$ в точке $(x_0, y_0)$:</p>
+      <div class="math-block">
+        <div class="math-label">Полный дифференциал</div>
+        $$dz = \dfrac{\partial f}{\partial x}\,dx + \dfrac{\partial f}{\partial y}\,dy = f'_x\,dx + f'_y\,dy$$
+      </div>
 
-  <h3>3.4 Законы Кеплера</h3>
-  <div class="note">
-    <strong>I закон (эллипса).</strong> Каждая планета движется по эллипсу, в одном из фокусов которого находится Солнце.
-  </div>
-  <div class="note">
-    <strong>II закон (площадей).</strong> Радиус-вектор планеты за равные промежутки времени заметает равные площади:
-    $$\dfrac{dS}{dt} = \dfrac{1}{2}\,|\mathbf{r} \times \mathbf{v}| = \text{const}$$
-  </div>
-  <div class="note">
-    <strong>III закон (гармонический).</strong> Квадраты периодов обращения планет относятся как кубы больших полуосей их орбит:
-    $$\dfrac{T_1^2}{T_2^2} = \dfrac{a_1^3}{a_2^3}$$
-  </div>
+      <h3>4.2 Частные производные</h3>
+      <p>Частная производная по $x$ вычисляется при фиксированном $y$, и наоборот:</p>
+      <div class="math-block">
+        <div class="math-label">Определение</div>
+        $$f'_x = \dfrac{\partial f}{\partial x} = \lim_{\Delta x \to 0}\dfrac{f(x+\Delta x,\, y) - f(x,y)}{\Delta x}$$
+      </div>
+      <p>Смешанные производные второго порядка при непрерывности совпадают: $f''_{xy} = f''_{yx}$.</p>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 3</div>
-    <table>
-      <thead><tr><th>Величина</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Тангенциальное ускорение</td><td>$a_\tau = \dot{v}$</td></tr>
-        <tr><td>Нормальное ускорение</td><td>$a_n = v^2/R$</td></tr>
-        <tr><td>Полное ускорение</td><td>$|\mathbf{a}| = \sqrt{a_\tau^2 + a_n^2}$</td></tr>
-        <tr><td>Дальность полёта</td><td>$L = v_0^2\sin2\alpha\,/\,g$</td></tr>
-        <tr><td>III закон Кеплера</td><td>$T^2/a^3 = \mathrm{const}$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+      <h3>4.3 Градиент и производная по направлению</h3>
+      <div class="math-block">
+        <div class="math-label">Градиент</div>
+        $$\nabla f = \mathrm{grad}\, f = \left(\dfrac{\partial f}{\partial x},\, \dfrac{\partial f}{\partial y}\right)$$
+      </div>
+      <p>Производная функции по направлению единичного вектора $\mathbf{l} = (\cos\alpha, \cos\beta)$:</p>
+      <div class="math-block">
+        $$\dfrac{\partial f}{\partial \mathbf{l}} = \dfrac{\partial f}{\partial x}\cos\alpha + \dfrac{\partial
+        f}{\partial y}\cos\beta$$
+      </div>
+      <p>Градиент указывает направление наибольшего возрастания функции; его модуль равен наибольшему значению
+        производной по направлению.</p>
 
-<hr class="topic-divider">
+      <h3>4.4 Применение в экономике</h3>
+      <p>В экономических моделях функция $Q = f(K, L)$ описывает объём выпуска в зависимости от капитала $K$ и труда $L$
+        (<em>производственная функция</em>). Частные производные $\partial Q/\partial K$ и $\partial Q/\partial L$
+        называются <em>предельными продуктами</em> факторов производства.</p>
+      <p>Задачи на нахождение минимума затрат или максимума выпуска при ограничениях на ресурсы решаются методом
+        множителей Лагранжа (см. Тему 5).</p>
 
-<!-- ─────────────────────────── ТЕМА 4 ─────────────────────────────── -->
-<div class="topic" id="t4">
-  <div class="topic-header">
-    <div class="topic-num">04</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема четвёртая</div>
-      <div class="topic-title">Функции нескольких переменных. Частные производные. Экономические задачи</div>
+      <div class="formula-table-wrap">
+        <div class="formula-table-title">Ключевые формулы — Тема 4</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Понятие</th>
+              <th>Формула</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Полный дифференциал</td>
+              <td>$dz = f'_x\,dx + f'_y\,dy$</td>
+            </tr>
+            <tr>
+              <td>Градиент</td>
+              <td>$\nabla f = (f'_x,\, f'_y)$</td>
+            </tr>
+            <tr>
+              <td>Производная по направлению</td>
+              <td>$\partial f/\partial\mathbf{l} = f'_x\cos\alpha + f'_y\cos\beta$</td>
+            </tr>
+            <tr>
+              <td>Смешанная производная</td>
+              <td>$f''_{xy} = f''_{yx}$ (при непрерывности)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <h3>4.1 Основные понятия</h3>
-  <p>Функция $z = f(x, y)$ ставит в соответствие каждой точке $(x, y)$ области $D \subset \mathbb{R}^2$ единственное вещественное число $z$. Область $D$ называется <em>областью определения</em>.</p>
-  <p><strong>Полный дифференциал</strong> функции $f(x,y)$ в точке $(x_0, y_0)$:</p>
-  <div class="math-block">
-    <div class="math-label">Полный дифференциал</div>
-    $$dz = \dfrac{\partial f}{\partial x}\,dx + \dfrac{\partial f}{\partial y}\,dy = f'_x\,dx + f'_y\,dy$$
-  </div>
+    <hr class="topic-divider">
 
-  <h3>4.2 Частные производные</h3>
-  <p>Частная производная по $x$ вычисляется при фиксированном $y$, и наоборот:</p>
-  <div class="math-block">
-    <div class="math-label">Определение</div>
-    $$f'_x = \dfrac{\partial f}{\partial x} = \lim_{\Delta x \to 0}\dfrac{f(x+\Delta x,\, y) - f(x,y)}{\Delta x}$$
-  </div>
-  <p>Смешанные производные второго порядка при непрерывности совпадают: $f''_{xy} = f''_{yx}$.</p>
+    <!-- ─────────────────────────── ТЕМА 5 ─────────────────────────────── -->
+    <div class="topic" id="t5">
+      <div class="topic-header">
+        <div class="topic-num">05</div>
+        <div class="topic-title-block">
+          <div class="topic-label">Тема пятая</div>
+          <div class="topic-title">Условный и безусловный экстремум. Метод множителей Лагранжа</div>
+        </div>
+      </div>
 
-  <h3>4.3 Градиент и производная по направлению</h3>
-  <div class="math-block">
-    <div class="math-label">Градиент</div>
-    $$\nabla f = \mathrm{grad}\, f = \left(\dfrac{\partial f}{\partial x},\, \dfrac{\partial f}{\partial y}\right)$$
-  </div>
-  <p>Производная функции по направлению единичного вектора $\mathbf{l} = (\cos\alpha, \cos\beta)$:</p>
-  <div class="math-block">
-    $$\dfrac{\partial f}{\partial \mathbf{l}} = \dfrac{\partial f}{\partial x}\cos\alpha + \dfrac{\partial f}{\partial y}\cos\beta$$
-  </div>
-  <p>Градиент указывает направление наибольшего возрастания функции; его модуль равен наибольшему значению производной по направлению.</p>
+      <h3>5.1 Безусловный экстремум</h3>
+      <p><strong>Необходимое условие экстремума:</strong> в точке экстремума все частные производные первого порядка
+        обращаются в нуль. Точки, в которых выполнено это условие, называются <em>стационарными</em>:</p>
+      <div class="math-block">
+        <div class="math-label">Необходимое условие</div>
+        $$f'_x(x_0, y_0) = 0, \qquad f'_y(x_0, y_0) = 0$$
+      </div>
+      <p><strong>Достаточное условие.</strong> Пусть $A = f''_{xx}$, $B = f''_{xy}$, $C = f''_{yy}$ вычислены в
+        стационарной точке. Введём дискриминант $\Delta = AC - B^2$:</p>
+      <div class="math-block">
+        <div class="math-label">Достаточное условие</div>
+        $$\Delta = AC - B^2 \begin{cases} > 0,\; A < 0 & \Rightarrow \text{максимум} \\> 0,\; A > 0 & \Rightarrow
+          \text{минимум} \\ < 0 & \Rightarrow \text{седловая точка (не экстремум)} \\=0 & \Rightarrow \text{требуется
+            дополнительное исследование} \end{cases}$$ </div>
 
-  <h3>4.4 Применение в экономике</h3>
-  <p>В экономических моделях функция $Q = f(K, L)$ описывает объём выпуска в зависимости от капитала $K$ и труда $L$ (<em>производственная функция</em>). Частные производные $\partial Q/\partial K$ и $\partial Q/\partial L$ называются <em>предельными продуктами</em> факторов производства.</p>
-  <p>Задачи на нахождение минимума затрат или максимума выпуска при ограничениях на ресурсы решаются методом множителей Лагранжа (см. Тему 5).</p>
+            <h3>5.2 Условный экстремум</h3>
+            <p>Задача условного экстремума: найти экстремум функции $f(x,y)$ при наличии ограничения $\varphi(x,y) = 0$.
+              Переменные $x$ и $y$ уже не являются независимыми.</p>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 4</div>
-    <table>
-      <thead><tr><th>Понятие</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Полный дифференциал</td><td>$dz = f'_x\,dx + f'_y\,dy$</td></tr>
-        <tr><td>Градиент</td><td>$\nabla f = (f'_x,\, f'_y)$</td></tr>
-        <tr><td>Производная по направлению</td><td>$\partial f/\partial\mathbf{l} = f'_x\cos\alpha + f'_y\cos\beta$</td></tr>
-        <tr><td>Смешанная производная</td><td>$f''_{xy} = f''_{yx}$ (при непрерывности)</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+            <h3>5.3 Метод множителей Лагранжа</h3>
+            <p>Вводится вспомогательная функция — <em>функция Лагранжа</em>:</p>
+            <div class="math-block">
+              <div class="math-label">Функция Лагранжа</div>
+              $$\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda\,\varphi(x, y)$$
+            </div>
+            <p>Необходимые условия условного экстремума — система уравнений:</p>
+            <div class="math-block">
+              <div class="math-label">Система Лагранжа</div>
+              $$\begin{cases} \mathcal{L}'_x = f'_x + \lambda\,\varphi'_x = 0 \\ \mathcal{L}'_y = f'_y +
+              \lambda\,\varphi'_y = 0 \\ \varphi(x,y) = 0 \end{cases}$$
+            </div>
+            <p>Решение системы даёт подозрительные на экстремум точки и значение множителя $\lambda$. Характер точки
+              определяется из содержательного смысла задачи или с помощью дополнительного анализа.</p>
 
-<hr class="topic-divider">
+            <div class="note">
+              <strong>Обобщение.</strong> При нескольких ограничениях $\varphi_k(x,y,\ldots) = 0$ вводится столько же
+              множителей $\lambda_k$: $\;\mathcal{L} = f + \sum_k \lambda_k \varphi_k$.
+            </div>
 
-<!-- ─────────────────────────── ТЕМА 5 ─────────────────────────────── -->
-<div class="topic" id="t5">
-  <div class="topic-header">
-    <div class="topic-num">05</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема пятая</div>
-      <div class="topic-title">Условный и безусловный экстремум. Метод множителей Лагранжа</div>
-    </div>
-  </div>
+            <div class="formula-table-wrap">
+              <div class="formula-table-title">Ключевые формулы — Тема 5</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Понятие</th>
+                    <th>Формула</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Стационарные точки</td>
+                    <td>$f'_x = 0,\; f'_y = 0$</td>
+                  </tr>
+                  <tr>
+                    <td>Дискриминант</td>
+                    <td>$\Delta = f''_{xx}\cdot f''_{yy} - (f''_{xy})^2$</td>
+                  </tr>
+                  <tr>
+                    <td>Функция Лагранжа</td>
+                    <td>$\mathcal{L} = f(x,y) + \lambda\,\varphi(x,y)$</td>
+                  </tr>
+                  <tr>
+                    <td>Условия Лагранжа</td>
+                    <td>$\mathcal{L}'_x = 0,\; \mathcal{L}'_y = 0,\; \varphi = 0$</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      </div>
 
-  <h3>5.1 Безусловный экстремум</h3>
-  <p><strong>Необходимое условие экстремума:</strong> в точке экстремума все частные производные первого порядка обращаются в нуль. Точки, в которых выполнено это условие, называются <em>стационарными</em>:</p>
-  <div class="math-block">
-    <div class="math-label">Необходимое условие</div>
-    $$f'_x(x_0, y_0) = 0, \qquad f'_y(x_0, y_0) = 0$$
-  </div>
-  <p><strong>Достаточное условие.</strong> Пусть $A = f''_{xx}$, $B = f''_{xy}$, $C = f''_{yy}$ вычислены в стационарной точке. Введём дискриминант $\Delta = AC - B^2$:</p>
-  <div class="math-block">
-    <div class="math-label">Достаточное условие</div>
-    $$\Delta = AC - B^2 \begin{cases} > 0,\; A < 0 & \Rightarrow \text{максимум} \\ > 0,\; A > 0 & \Rightarrow \text{минимум} \\ < 0 & \Rightarrow \text{седловая точка (не экстремум)} \\ = 0 & \Rightarrow \text{требуется дополнительное исследование} \end{cases}$$
-  </div>
+      <hr class="topic-divider">
 
-  <h3>5.2 Условный экстремум</h3>
-  <p>Задача условного экстремума: найти экстремум функции $f(x,y)$ при наличии ограничения $\varphi(x,y) = 0$. Переменные $x$ и $y$ уже не являются независимыми.</p>
+      <!-- ─────────────────────────── ТЕМА 6 ─────────────────────────────── -->
+      <div class="topic" id="t6">
+        <div class="topic-header">
+          <div class="topic-num">06</div>
+          <div class="topic-title-block">
+            <div class="topic-label">Тема шестая</div>
+            <div class="topic-title">Экстремум функции многих переменных. Наибольшее и наименьшее значения в замкнутой
+              области</div>
+          </div>
+        </div>
 
-  <h3>5.3 Метод множителей Лагранжа</h3>
-  <p>Вводится вспомогательная функция — <em>функция Лагранжа</em>:</p>
-  <div class="math-block">
-    <div class="math-label">Функция Лагранжа</div>
-    $$\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda\,\varphi(x, y)$$
-  </div>
-  <p>Необходимые условия условного экстремума — система уравнений:</p>
-  <div class="math-block">
-    <div class="math-label">Система Лагранжа</div>
-    $$\begin{cases} \mathcal{L}'_x = f'_x + \lambda\,\varphi'_x = 0 \\ \mathcal{L}'_y = f'_y + \lambda\,\varphi'_y = 0 \\ \varphi(x,y) = 0 \end{cases}$$
-  </div>
-  <p>Решение системы даёт подозрительные на экстремум точки и значение множителя $\lambda$. Характер точки определяется из содержательного смысла задачи или с помощью дополнительного анализа.</p>
+        <h3>6.1 Экстремум функции нескольких переменных</h3>
+        <p>Для функции $f(x_1, x_2, \ldots, x_n)$ стационарные точки находятся из системы:</p>
+        <div class="math-block">
+          <div class="math-label">Необходимое условие</div>
+          $$\dfrac{\partial f}{\partial x_1} = 0, \quad \dfrac{\partial f}{\partial x_2} = 0, \quad \ldots, \quad
+          \dfrac{\partial f}{\partial x_n} = 0$$
+        </div>
+        <p>Достаточное условие экстремума в случае $n$ переменных формулируется через знакоопределённость матрицы вторых
+          производных — <em>матрицы Гессе</em> (гессиана):</p>
+        <div class="math-block">
+          <div class="math-label">Матрица Гессе</div>
+          $$H = \begin{pmatrix} f''_{x_1x_1} & f''_{x_1x_2} & \cdots \\ f''_{x_2x_1} & f''_{x_2x_2} & \cdots \\ \vdots &
+          \vdots & \ddots \end{pmatrix}$$
+        </div>
+        <div class="note">
+          <strong>Критерий Сильвестра.</strong> Если все угловые миноры $\Delta_k$ матрицы Гессе положительны ($\Delta_k
+          > 0$), то точка является <em>минимумом</em>. Если знаки чередуются ($\Delta_k\!: -,+,-,\ldots$), то точка
+          является <em>максимумом</em>.
+        </div>
 
-  <div class="note">
-    <strong>Обобщение.</strong> При нескольких ограничениях $\varphi_k(x,y,\ldots) = 0$ вводится столько же множителей $\lambda_k$: $\;\mathcal{L} = f + \sum_k \lambda_k \varphi_k$.
-  </div>
+        <h3>6.2 Наибольшее и наименьшее значения в замкнутой области</h3>
+        <p>В отличие от задачи на экстремум, требуется найти <em>глобальный</em> максимум и минимум функции на замкнутой
+          ограниченной области $\overline{D}$. Алгоритм:</p>
+        <div class="math-block">
+          <div class="math-label">Алгоритм</div>
+          \begin{align}
+          &\textbf{1.}\;\text{Найти стационарные точки внутри } D,\text{ вычислить } f \text{ в них.}\\
+          &\textbf{2.}\;\text{Исследовать } f \text{ на границе } \partial D\text{ (задача условного экстремума).}\\
+          &\textbf{3.}\;\text{Сравнить все найденные значения; наибольшее и наименьшее — искомые.}
+          \end{align}
+        </div>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 5</div>
-    <table>
-      <thead><tr><th>Понятие</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Стационарные точки</td><td>$f'_x = 0,\; f'_y = 0$</td></tr>
-        <tr><td>Дискриминант</td><td>$\Delta = f''_{xx}\cdot f''_{yy} - (f''_{xy})^2$</td></tr>
-        <tr><td>Функция Лагранжа</td><td>$\mathcal{L} = f(x,y) + \lambda\,\varphi(x,y)$</td></tr>
-        <tr><td>Условия Лагранжа</td><td>$\mathcal{L}'_x = 0,\; \mathcal{L}'_y = 0,\; \varphi = 0$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <h3>6.3 Замечание об экономических приложениях</h3>
+        <p>В экономике задача нахождения наибольшего значения функции прибыли $\Pi(x, y)$ или наименьшего значения
+          функции затрат $C(x, y)$ на замкнутой области сводится к описанному алгоритму. Граница области в этом случае
+          задаётся бюджетными ограничениями или технологическими пределами.</p>
 
-<hr class="topic-divider">
-
-<!-- ─────────────────────────── ТЕМА 6 ─────────────────────────────── -->
-<div class="topic" id="t6">
-  <div class="topic-header">
-    <div class="topic-num">06</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема шестая</div>
-      <div class="topic-title">Экстремум функции многих переменных. Наибольшее и наименьшее значения в замкнутой области</div>
-    </div>
-  </div>
-
-  <h3>6.1 Экстремум функции нескольких переменных</h3>
-  <p>Для функции $f(x_1, x_2, \ldots, x_n)$ стационарные точки находятся из системы:</p>
-  <div class="math-block">
-    <div class="math-label">Необходимое условие</div>
-    $$\dfrac{\partial f}{\partial x_1} = 0, \quad \dfrac{\partial f}{\partial x_2} = 0, \quad \ldots, \quad \dfrac{\partial f}{\partial x_n} = 0$$
-  </div>
-  <p>Достаточное условие экстремума в случае $n$ переменных формулируется через знакоопределённость матрицы вторых производных — <em>матрицы Гессе</em> (гессиана):</p>
-  <div class="math-block">
-    <div class="math-label">Матрица Гессе</div>
-    $$H = \begin{pmatrix} f''_{x_1x_1} & f''_{x_1x_2} & \cdots \\ f''_{x_2x_1} & f''_{x_2x_2} & \cdots \\ \vdots & \vdots & \ddots \end{pmatrix}$$
-  </div>
-  <div class="note">
-    <strong>Критерий Сильвестра.</strong> Если все угловые миноры $\Delta_k$ матрицы Гессе положительны ($\Delta_k > 0$), то точка является <em>минимумом</em>. Если знаки чередуются ($\Delta_k\!: -,+,-,\ldots$), то точка является <em>максимумом</em>.
-  </div>
-
-  <h3>6.2 Наибольшее и наименьшее значения в замкнутой области</h3>
-  <p>В отличие от задачи на экстремум, требуется найти <em>глобальный</em> максимум и минимум функции на замкнутой ограниченной области $\overline{D}$. Алгоритм:</p>
-  <div class="math-block">
-    <div class="math-label">Алгоритм</div>
-    \begin{align}
-    &\textbf{1.}\;\text{Найти стационарные точки внутри } D,\text{ вычислить } f \text{ в них.}\\
-    &\textbf{2.}\;\text{Исследовать } f \text{ на границе } \partial D\text{ (задача условного экстремума).}\\
-    &\textbf{3.}\;\text{Сравнить все найденные значения; наибольшее и наименьшее — искомые.}
-    \end{align}
-  </div>
-
-  <h3>6.3 Замечание об экономических приложениях</h3>
-  <p>В экономике задача нахождения наибольшего значения функции прибыли $\Pi(x, y)$ или наименьшего значения функции затрат $C(x, y)$ на замкнутой области сводится к описанному алгоритму. Граница области в этом случае задаётся бюджетными ограничениями или технологическими пределами.</p>
-
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 6</div>
-    <table>
-      <thead><tr><th>Понятие</th><th>Формула / условие</th></tr></thead>
-      <tbody>
-        <tr><td>Стационарные точки</td><td>$\nabla f = \mathbf{0}$, т.е. $f'_{x_k} = 0\;\forall k$</td></tr>
-        <tr><td>Матрица Гессе</td><td>$H_{ij} = \partial^2 f / \partial x_i \partial x_j$</td></tr>
-        <tr><td>Минимум (Сильвестр)</td><td>$\Delta_1 > 0,\;\Delta_2 > 0,\;\ldots > 0$</td></tr>
-        <tr><td>Максимум (Сильвестр)</td><td>$\Delta_1 < 0,\;\Delta_2 > 0,\;\Delta_3 < 0,\;\ldots$</td></tr>
-        <tr><td>Глобальный экстремум</td><td>$\max_{\overline{D}} f = \max\!\left\{f\text{ внутри} \cup f\text{ на }\partial D\right\}$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <div class="formula-table-wrap">
+          <div class="formula-table-title">Ключевые формулы — Тема 6</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Понятие</th>
+                <th>Формула / условие</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Стационарные точки</td>
+                <td>$\nabla f = \mathbf{0}$, т.е. $f'_{x_k} = 0\;\forall k$</td>
+              </tr>
+              <tr>
+                <td>Матрица Гессе</td>
+                <td>$H_{ij} = \partial^2 f / \partial x_i \partial x_j$</td>
+              </tr>
+              <tr>
+                <td>Минимум (Сильвестр)</td>
+                <td>$\Delta_1 > 0,\;\Delta_2 > 0,\;\ldots > 0$</td>
+              </tr>
+              <tr>
+                <td>Максимум (Сильвестр)</td>
+                <td>$\Delta_1 < 0,\;\Delta_2> 0,\;\Delta_3 < 0,\;\ldots$</td>
+              </tr>
+              <tr>
+                <td>Глобальный экстремум</td>
+                <td>$\max_{\overline{D}} f = \max\!\left\{f\text{ внутри} \cup f\text{ на }\partial D\right\}$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
 
-<hr class="topic-divider">
+      <hr class="topic-divider">
 
-<!-- ─────────────────────────── ТЕМА 7 ─────────────────────────────── -->
-<div class="topic" id="t7">
-  <div class="topic-header">
-    <div class="topic-num">07</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема седьмая</div>
-      <div class="topic-title">Тройной интеграл. Вычисление тройных интегралов в декартовых координатах</div>
-    </div>
-  </div>
+      <!-- ─────────────────────────── ТЕМА 7 ─────────────────────────────── -->
+      <div class="topic" id="t7">
+        <div class="topic-header">
+          <div class="topic-num">07</div>
+          <div class="topic-title-block">
+            <div class="topic-label">Тема седьмая</div>
+            <div class="topic-title">Тройной интеграл. Вычисление тройных интегралов в декартовых координатах</div>
+          </div>
+        </div>
 
-  <h3>7.1 Определение тройного интеграла</h3>
-  <p>Пусть функция $f(x, y, z)$ определена и ограничена в замкнутой области $V \subset \mathbb{R}^3$. Разобьём $V$ на $n$ элементарных частей объёмом $\Delta V_k$, выберем в каждой произвольную точку $(\xi_k, \eta_k, \zeta_k)$ и составим интегральную сумму. Предел этой суммы при измельчении разбиения называется <em>тройным интегралом</em>:</p>
-  <div class="math-block">
-    <div class="math-label">Определение</div>
-    $$\iiint_V f(x,y,z)\,dV = \lim_{\lambda \to 0} \sum_{k=1}^n f(\xi_k,\eta_k,\zeta_k)\,\Delta V_k$$
-  </div>
-  <p>Геометрический смысл при $f \equiv 1$: $\iiint_V dV = \text{объём области } V$.</p>
+        <h3>7.1 Определение тройного интеграла</h3>
+        <p>Пусть функция $f(x, y, z)$ определена и ограничена в замкнутой области $V \subset \mathbb{R}^3$. Разобьём $V$
+          на $n$ элементарных частей объёмом $\Delta V_k$, выберем в каждой произвольную точку $(\xi_k, \eta_k,
+          \zeta_k)$ и составим интегральную сумму. Предел этой суммы при измельчении разбиения называется <em>тройным
+            интегралом</em>:</p>
+        <div class="math-block">
+          <div class="math-label">Определение</div>
+          $$\iiint_V f(x,y,z)\,dV = \lim_{\lambda \to 0} \sum_{k=1}^n f(\xi_k,\eta_k,\zeta_k)\,\Delta V_k$$
+        </div>
+        <p>Геометрический смысл при $f \equiv 1$: $\iiint_V dV = \text{объём области } V$.</p>
 
-  <h3>7.2 Сведение к повторному интегралу</h3>
-  <p>Основной метод вычисления тройного интеграла в декартовых координатах — сведение к трём последовательным определённым интегралам. Если область $V$ описывается неравенствами:</p>
-  <div class="math-block">
-    $$a \leq x \leq b, \quad \varphi_1(x) \leq y \leq \varphi_2(x), \quad \psi_1(x,y) \leq z \leq \psi_2(x,y)$$
-  </div>
-  <p>то тройной интеграл вычисляется как повторный:</p>
-  <div class="math-block">
-    <div class="math-label">Повторный интеграл</div>
-    $$\iiint_V f\,dV = \int_a^b dx \int_{\varphi_1(x)}^{\varphi_2(x)} dy \int_{\psi_1(x,y)}^{\psi_2(x,y)} f(x,y,z)\,dz$$
-  </div>
-  <p>Интегрирование ведётся изнутри наружу: сначала по $z$, затем по $y$, затем по $x$.</p>
+        <h3>7.2 Сведение к повторному интегралу</h3>
+        <p>Основной метод вычисления тройного интеграла в декартовых координатах — сведение к трём последовательным
+          определённым интегралам. Если область $V$ описывается неравенствами:</p>
+        <div class="math-block">
+          $$a \leq x \leq b, \quad \varphi_1(x) \leq y \leq \varphi_2(x), \quad \psi_1(x,y) \leq z \leq \psi_2(x,y)$$
+        </div>
+        <p>то тройной интеграл вычисляется как повторный:</p>
+        <div class="math-block">
+          <div class="math-label">Повторный интеграл</div>
+          $$\iiint_V f\,dV = \int_a^b dx \int_{\varphi_1(x)}^{\varphi_2(x)} dy \int_{\psi_1(x,y)}^{\psi_2(x,y)}
+          f(x,y,z)\,dz$$
+        </div>
+        <p>Интегрирование ведётся изнутри наружу: сначала по $z$, затем по $y$, затем по $x$.</p>
 
-  <h3>7.3 Замена переменных. Цилиндрические и сферические координаты</h3>
-  <p>При замене переменных в тройном интеграле вводится якобиан преобразования $J$:</p>
-  <div class="math-block">
-    <div class="math-label">Замена переменных</div>
-    $$\iiint_V f(x,y,z)\,dV = \iiint_{V'} f\bigl(x(u,v,w),\ldots\bigr)\,|J|\,du\,dv\,dw$$
-  </div>
-  <p>Для <strong>цилиндрических координат</strong> $(r, \varphi, z)$: $x = r\cos\varphi$, $y = r\sin\varphi$, $z = z$; якобиан $J = r$.</p>
-  <p>Для <strong>сферических координат</strong> $(r, \theta, \varphi)$: $x = r\sin\theta\cos\varphi$, $y = r\sin\theta\sin\varphi$, $z = r\cos\theta$; якобиан $J = r^2\sin\theta$.</p>
-  <div class="math-block">
-    <div class="math-label">В сферических координатах</div>
-    $$\iiint_V f\,dV = \iiint f\,r^2\sin\theta\,dr\,d\theta\,d\varphi$$
-  </div>
+        <h3>7.3 Замена переменных. Цилиндрические и сферические координаты</h3>
+        <p>При замене переменных в тройном интеграле вводится якобиан преобразования $J$:</p>
+        <div class="math-block">
+          <div class="math-label">Замена переменных</div>
+          $$\iiint_V f(x,y,z)\,dV = \iiint_{V'} f\bigl(x(u,v,w),\ldots\bigr)\,|J|\,du\,dv\,dw$$
+        </div>
+        <p>Для <strong>цилиндрических координат</strong> $(r, \varphi, z)$: $x = r\cos\varphi$, $y = r\sin\varphi$, $z =
+          z$; якобиан $J = r$.</p>
+        <p>Для <strong>сферических координат</strong> $(r, \theta, \varphi)$: $x = r\sin\theta\cos\varphi$, $y =
+          r\sin\theta\sin\varphi$, $z = r\cos\theta$; якобиан $J = r^2\sin\theta$.</p>
+        <div class="math-block">
+          <div class="math-label">В сферических координатах</div>
+          $$\iiint_V f\,dV = \iiint f\,r^2\sin\theta\,dr\,d\theta\,d\varphi$$
+        </div>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 7</div>
-    <table>
-      <thead><tr><th>Понятие</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Повторный интеграл</td><td>$\int_a^b dx\int_{\varphi_1}^{\varphi_2} dy\int_{\psi_1}^{\psi_2} f\,dz$</td></tr>
-        <tr><td>Объём тела</td><td>$V = \iiint_V dV$</td></tr>
-        <tr><td>Якобиан (цилиндр.)</td><td>$J = r$</td></tr>
-        <tr><td>Якобиан (сферич.)</td><td>$J = r^2\sin\theta$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <div class="formula-table-wrap">
+          <div class="formula-table-title">Ключевые формулы — Тема 7</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Понятие</th>
+                <th>Формула</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Повторный интеграл</td>
+                <td>$\int_a^b dx\int_{\varphi_1}^{\varphi_2} dy\int_{\psi_1}^{\psi_2} f\,dz$</td>
+              </tr>
+              <tr>
+                <td>Объём тела</td>
+                <td>$V = \iiint_V dV$</td>
+              </tr>
+              <tr>
+                <td>Якобиан (цилиндр.)</td>
+                <td>$J = r$</td>
+              </tr>
+              <tr>
+                <td>Якобиан (сферич.)</td>
+                <td>$J = r^2\sin\theta$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-<hr class="topic-divider">
+      <hr class="topic-divider">
 
-<!-- ─────────────────────────── ТЕМА 8 ─────────────────────────────── -->
-<div class="topic" id="t8">
-  <div class="topic-header">
-    <div class="topic-num">08</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема восьмая</div>
-      <div class="topic-title">Геометрические и физические приложения двойного интеграла. Объём тела. Площадь поверхности</div>
-    </div>
-  </div>
+      <!-- ─────────────────────────── ТЕМА 8 ─────────────────────────────── -->
+      <div class="topic" id="t8">
+        <div class="topic-header">
+          <div class="topic-num">08</div>
+          <div class="topic-title-block">
+            <div class="topic-label">Тема восьмая</div>
+            <div class="topic-title">Геометрические и физические приложения двойного интеграла. Объём тела. Площадь
+              поверхности</div>
+          </div>
+        </div>
 
-  <h3>8.1 Площадь плоской фигуры</h3>
-  <p>Площадь плоской области $D$ выражается через двойной интеграл:</p>
-  <div class="math-block">
-    <div class="math-label">Площадь</div>
-    $$S = \iint_D dA = \iint_D dx\,dy$$
-  </div>
+        <h3>8.1 Площадь плоской фигуры</h3>
+        <p>Площадь плоской области $D$ выражается через двойной интеграл:</p>
+        <div class="math-block">
+          <div class="math-label">Площадь</div>
+          $$S = \iint_D dA = \iint_D dx\,dy$$
+        </div>
 
-  <h3>8.2 Объём тела</h3>
-  <p>Объём тела, ограниченного снизу плоскостью $z = 0$, сверху поверхностью $z = f(x,y) \geq 0$ над областью $D$:</p>
-  <div class="math-block">
-    <div class="math-label">Объём цилиндроида</div>
-    $$V = \iint_D f(x,y)\,dx\,dy$$
-  </div>
+        <h3>8.2 Объём тела</h3>
+        <p>Объём тела, ограниченного снизу плоскостью $z = 0$, сверху поверхностью $z = f(x,y) \geq 0$ над областью $D$:
+        </p>
+        <div class="math-block">
+          <div class="math-label">Объём цилиндроида</div>
+          $$V = \iint_D f(x,y)\,dx\,dy$$
+        </div>
 
-  <h3>8.3 Площадь поверхности</h3>
-  <p>Если поверхность задана явно уравнением $z = f(x,y)$, её площадь вычисляется по формуле:</p>
-  <div class="math-block">
-    <div class="math-label">Площадь поверхности</div>
-    $$\sigma = \iint_D \sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial y}\right)^2}\;dx\,dy$$
-  </div>
-  <p>Множитель под интегралом есть длина нормального вектора к поверхности, проецируемой на плоскость $Oxy$.</p>
+        <h3>8.3 Площадь поверхности</h3>
+        <p>Если поверхность задана явно уравнением $z = f(x,y)$, её площадь вычисляется по формуле:</p>
+        <div class="math-block">
+          <div class="math-label">Площадь поверхности</div>
+          $$\sigma = \iint_D \sqrt{1 + \left(\dfrac{\partial f}{\partial x}\right)^2 + \left(\dfrac{\partial f}{\partial
+          y}\right)^2}\;dx\,dy$$
+        </div>
+        <p>Множитель под интегралом есть длина нормального вектора к поверхности, проецируемой на плоскость $Oxy$.</p>
 
-  <h3>8.4 Физические приложения</h3>
-  <p>Пусть плоская фигура $D$ имеет поверхностную плотность $\rho(x,y)$. Тогда:</p>
-  <div class="math-block">
-    <div class="math-label">Физические величины</div>
-    \begin{aligned}
-    &\text{Масса:} &m &= \iint_D \rho(x,y)\,dA \\[6pt]
-    &\text{Статические моменты:} &M_x &= \iint_D y\,\rho\,dA, \quad M_y = \iint_D x\,\rho\,dA \\[6pt]
-    &\text{Центр масс:} &\bar{x} &= \dfrac{M_y}{m}, \quad \bar{y} = \dfrac{M_x}{m} \\[6pt]
-    &\text{Момент инерции:} &I_O &= \iint_D (x^2 + y^2)\,\rho\,dA
-    \end{aligned}
-  </div>
+        <h3>8.4 Физические приложения</h3>
+        <p>Пусть плоская фигура $D$ имеет поверхностную плотность $\rho(x,y)$. Тогда:</p>
+        <div class="math-block">
+          <div class="math-label">Физические величины</div>
+          \begin{aligned}
+          &\text{Масса:} &m &= \iint_D \rho(x,y)\,dA \\[6pt]
+          &\text{Статические моменты:} &M_x &= \iint_D y\,\rho\,dA, \quad M_y = \iint_D x\,\rho\,dA \\[6pt]
+          &\text{Центр масс:} &\bar{x} &= \dfrac{M_y}{m}, \quad \bar{y} = \dfrac{M_x}{m} \\[6pt]
+          &\text{Момент инерции:} &I_O &= \iint_D (x^2 + y^2)\,\rho\,dA
+          \end{aligned}
+        </div>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 8</div>
-    <table>
-      <thead><tr><th>Величина</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Площадь фигуры</td><td>$S = \iint_D dx\,dy$</td></tr>
-        <tr><td>Объём тела</td><td>$V = \iint_D f(x,y)\,dx\,dy$</td></tr>
-        <tr><td>Площадь поверхности</td><td>$\sigma = \iint_D \sqrt{1+f'^2_x+f'^2_y}\;dA$</td></tr>
-        <tr><td>Масса пластины</td><td>$m = \iint_D \rho\,dA$</td></tr>
-        <tr><td>Момент инерции</td><td>$I_O = \iint_D(x^2+y^2)\rho\,dA$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <div class="formula-table-wrap">
+          <div class="formula-table-title">Ключевые формулы — Тема 8</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Величина</th>
+                <th>Формула</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Площадь фигуры</td>
+                <td>$S = \iint_D dx\,dy$</td>
+              </tr>
+              <tr>
+                <td>Объём тела</td>
+                <td>$V = \iint_D f(x,y)\,dx\,dy$</td>
+              </tr>
+              <tr>
+                <td>Площадь поверхности</td>
+                <td>$\sigma = \iint_D \sqrt{1+f'^2_x+f'^2_y}\;dA$</td>
+              </tr>
+              <tr>
+                <td>Масса пластины</td>
+                <td>$m = \iint_D \rho\,dA$</td>
+              </tr>
+              <tr>
+                <td>Момент инерции</td>
+                <td>$I_O = \iint_D(x^2+y^2)\rho\,dA$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-<hr class="topic-divider">
+      <hr class="topic-divider">
 
-<!-- ─────────────────────────── ТЕМА 9 ─────────────────────────────── -->
-<div class="topic" id="t9">
-  <div class="topic-header">
-    <div class="topic-num">09</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема девятая</div>
-      <div class="topic-title">Параметрические поверхности. Поверхности вращения. Плоскость трения</div>
-    </div>
-  </div>
+      <!-- ─────────────────────────── ТЕМА 9 ─────────────────────────────── -->
+      <div class="topic" id="t9">
+        <div class="topic-header">
+          <div class="topic-num">09</div>
+          <div class="topic-title-block">
+            <div class="topic-label">Тема девятая</div>
+            <div class="topic-title">Параметрические поверхности. Поверхности вращения. Плоскость трения</div>
+          </div>
+        </div>
 
-  <h3>9.1 Параметрическое задание поверхности</h3>
-  <p>Поверхность в пространстве может быть задана параметрически: каждая точка поверхности определяется двумя параметрами $u, v$:</p>
-  <div class="math-block">
-    <div class="math-label">Параметрическая форма</div>
-    $$\mathbf{r}(u,v) = \bigl(x(u,v),\; y(u,v),\; z(u,v)\bigr), \quad (u,v) \in D$$
-  </div>
-  <p>При фиксированном $u$ или $v$ получаются <em>координатные линии</em> на поверхности.</p>
+        <h3>9.1 Параметрическое задание поверхности</h3>
+        <p>Поверхность в пространстве может быть задана параметрически: каждая точка поверхности определяется двумя
+          параметрами $u, v$:</p>
+        <div class="math-block">
+          <div class="math-label">Параметрическая форма</div>
+          $$\mathbf{r}(u,v) = \bigl(x(u,v),\; y(u,v),\; z(u,v)\bigr), \quad (u,v) \in D$$
+        </div>
+        <p>При фиксированном $u$ или $v$ получаются <em>координатные линии</em> на поверхности.</p>
 
-  <h3>9.2 Нормаль к поверхности и элемент площади</h3>
-  <p>Вектор нормали к поверхности в точке определяется как векторное произведение касательных векторов:</p>
-  <div class="math-block">
-    <div class="math-label">Нормаль</div>
-    $$\mathbf{N} = \mathbf{r}'_u \times \mathbf{r}'_v, \qquad |\mathbf{N}| = \sqrt{EG - F^2}$$
-  </div>
-  <p>где $E = |\mathbf{r}'_u|^2$, $G = |\mathbf{r}'_v|^2$, $F = \mathbf{r}'_u \cdot \mathbf{r}'_v$ — коэффициенты первой квадратичной формы. Элемент площади поверхности:</p>
-  <div class="math-block">
-    $$d\sigma = |\mathbf{r}'_u \times \mathbf{r}'_v|\,du\,dv = \sqrt{EG-F^2}\;du\,dv$$
-  </div>
+        <h3>9.2 Нормаль к поверхности и элемент площади</h3>
+        <p>Вектор нормали к поверхности в точке определяется как векторное произведение касательных векторов:</p>
+        <div class="math-block">
+          <div class="math-label">Нормаль</div>
+          $$\mathbf{N} = \mathbf{r}'_u \times \mathbf{r}'_v, \qquad |\mathbf{N}| = \sqrt{EG - F^2}$$
+        </div>
+        <p>где $E = |\mathbf{r}'_u|^2$, $G = |\mathbf{r}'_v|^2$, $F = \mathbf{r}'_u \cdot \mathbf{r}'_v$ — коэффициенты
+          первой квадратичной формы. Элемент площади поверхности:</p>
+        <div class="math-block">
+          $$d\sigma = |\mathbf{r}'_u \times \mathbf{r}'_v|\,du\,dv = \sqrt{EG-F^2}\;du\,dv$$
+        </div>
 
-  <h3>9.3 Поверхности вращения</h3>
-  <p>Поверхность, образованная вращением кривой $y = f(x)$ вокруг оси $Ox$, описывается уравнением:</p>
-  <div class="math-block">
-    <div class="math-label">Поверхность вращения</div>
-    $$y^2 + z^2 = f^2(x)$$
-  </div>
-  <p>В параметрической форме: $x = x$, $y = f(x)\cos\varphi$, $z = f(x)\sin\varphi$, где $\varphi \in [0, 2\pi]$. Площадь боковой поверхности тела вращения:</p>
-  <div class="math-block">
-    <div class="math-label">Площадь тела вращения</div>
-    $$\sigma = 2\pi \int_a^b |f(x)| \sqrt{1 + f'^2(x)}\,dx$$
-  </div>
+        <h3>9.3 Поверхности вращения</h3>
+        <p>Поверхность, образованная вращением кривой $y = f(x)$ вокруг оси $Ox$, описывается уравнением:</p>
+        <div class="math-block">
+          <div class="math-label">Поверхность вращения</div>
+          $$y^2 + z^2 = f^2(x)$$
+        </div>
+        <p>В параметрической форме: $x = x$, $y = f(x)\cos\varphi$, $z = f(x)\sin\varphi$, где $\varphi \in [0, 2\pi]$.
+          Площадь боковой поверхности тела вращения:</p>
+        <div class="math-block">
+          <div class="math-label">Площадь тела вращения</div>
+          $$\sigma = 2\pi \int_a^b |f(x)| \sqrt{1 + f'^2(x)}\,dx$$
+        </div>
 
-  <h3>9.4 Касательная плоскость и нормаль</h3>
-  <p>Уравнение касательной плоскости к поверхности $F(x,y,z) = 0$ в точке $(x_0,y_0,z_0)$:</p>
-  <div class="math-block">
-    <div class="math-label">Касательная плоскость</div>
-    $$F'_x(x-x_0) + F'_y(y-y_0) + F'_z(z-z_0) = 0$$
-  </div>
-  <p>Уравнение нормали к поверхности в той же точке:</p>
-  <div class="math-block">
-    $$\dfrac{x-x_0}{F'_x} = \dfrac{y-y_0}{F'_y} = \dfrac{z-z_0}{F'_z}$$
-  </div>
+        <h3>9.4 Касательная плоскость и нормаль</h3>
+        <p>Уравнение касательной плоскости к поверхности $F(x,y,z) = 0$ в точке $(x_0,y_0,z_0)$:</p>
+        <div class="math-block">
+          <div class="math-label">Касательная плоскость</div>
+          $$F'_x(x-x_0) + F'_y(y-y_0) + F'_z(z-z_0) = 0$$
+        </div>
+        <p>Уравнение нормали к поверхности в той же точке:</p>
+        <div class="math-block">
+          $$\dfrac{x-x_0}{F'_x} = \dfrac{y-y_0}{F'_y} = \dfrac{z-z_0}{F'_z}$$
+        </div>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 9</div>
-    <table>
-      <thead><tr><th>Понятие</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Элемент площади</td><td>$d\sigma = \sqrt{EG-F^2}\;du\,dv$</td></tr>
-        <tr><td>Площадь тела вращения</td><td>$\sigma = 2\pi\int_a^b|f|\sqrt{1+f'^2}\,dx$</td></tr>
-        <tr><td>Касательная плоскость</td><td>$F'_x\Delta x + F'_y\Delta y + F'_z\Delta z = 0$</td></tr>
-        <tr><td>Уравнение поверхности вращения</td><td>$y^2+z^2 = f^2(x)$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <div class="formula-table-wrap">
+          <div class="formula-table-title">Ключевые формулы — Тема 9</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Понятие</th>
+                <th>Формула</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Элемент площади</td>
+                <td>$d\sigma = \sqrt{EG-F^2}\;du\,dv$</td>
+              </tr>
+              <tr>
+                <td>Площадь тела вращения</td>
+                <td>$\sigma = 2\pi\int_a^b|f|\sqrt{1+f'^2}\,dx$</td>
+              </tr>
+              <tr>
+                <td>Касательная плоскость</td>
+                <td>$F'_x\Delta x + F'_y\Delta y + F'_z\Delta z = 0$</td>
+              </tr>
+              <tr>
+                <td>Уравнение поверхности вращения</td>
+                <td>$y^2+z^2 = f^2(x)$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-<hr class="topic-divider">
+      <hr class="topic-divider">
 
-<!-- ─────────────────────────── ТЕМА 10 ─────────────────────────────── -->
-<div class="topic" id="t10">
-  <div class="topic-header">
-    <div class="topic-num">10</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема десятая</div>
-      <div class="topic-title">Теорема о дивергенции. Скалярное и векторное поле. Градиент. Поток. Теорема Остроградского</div>
-    </div>
-  </div>
+      <!-- ─────────────────────────── ТЕМА 10 ─────────────────────────────── -->
+      <div class="topic" id="t10">
+        <div class="topic-header">
+          <div class="topic-num">10</div>
+          <div class="topic-title-block">
+            <div class="topic-label">Тема десятая</div>
+            <div class="topic-title">Теорема о дивергенции. Скалярное и векторное поле. Градиент. Поток. Теорема
+              Остроградского</div>
+          </div>
+        </div>
 
-  <h3>10.1 Скалярное поле. Градиент</h3>
-  <p><em>Скалярным полем</em> называется функция $u = u(x,y,z)$, определённая в некоторой области пространства. Основная характеристика скалярного поля — его <strong>градиент</strong>:</p>
-  <div class="math-block">
-    <div class="math-label">Градиент</div>
-    $$\mathrm{grad}\,u = \nabla u = \left(\dfrac{\partial u}{\partial x},\,\dfrac{\partial u}{\partial y},\,\dfrac{\partial u}{\partial z}\right)$$
-  </div>
-  <p>Градиент указывает направление наиболее быстрого возрастания поля; его модуль равен скорости роста в этом направлении.</p>
+        <h3>10.1 Скалярное поле. Градиент</h3>
+        <p><em>Скалярным полем</em> называется функция $u = u(x,y,z)$, определённая в некоторой области пространства.
+          Основная характеристика скалярного поля — его <strong>градиент</strong>:</p>
+        <div class="math-block">
+          <div class="math-label">Градиент</div>
+          $$\mathrm{grad}\,u = \nabla u = \left(\dfrac{\partial u}{\partial x},\,\dfrac{\partial u}{\partial
+          y},\,\dfrac{\partial u}{\partial z}\right)$$
+        </div>
+        <p>Градиент указывает направление наиболее быстрого возрастания поля; его модуль равен скорости роста в этом
+          направлении.</p>
 
-  <h3>10.2 Векторное поле. Дивергенция и ротор</h3>
-  <p><em>Векторным полем</em> называется вектор-функция $\mathbf{F}(x,y,z) = (P, Q, R)$. Основные дифференциальные операторы над векторным полем:</p>
-  <div class="math-block">
-    <div class="math-label">Дивергенция</div>
-    $$\mathrm{div}\,\mathbf{F} = \nabla \cdot \mathbf{F} = \dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} + \dfrac{\partial R}{\partial z}$$
-  </div>
-  <div class="math-block">
-    <div class="math-label">Ротор</div>
-    $$\mathrm{rot}\,\mathbf{F} = \nabla \times \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \partial_x & \partial_y & \partial_z \\ P & Q & R \end{vmatrix}$$
-  </div>
-  <p>Физический смысл: дивергенция характеризует «мощность источников» поля в точке; ротор описывает вращательный характер поля.</p>
+        <h3>10.2 Векторное поле. Дивергенция и ротор</h3>
+        <p><em>Векторным полем</em> называется вектор-функция $\mathbf{F}(x,y,z) = (P, Q, R)$. Основные дифференциальные
+          операторы над векторным полем:</p>
+        <div class="math-block">
+          <div class="math-label">Дивергенция</div>
+          $$\mathrm{div}\,\mathbf{F} = \nabla \cdot \mathbf{F} = \dfrac{\partial P}{\partial x} + \dfrac{\partial
+          Q}{\partial y} + \dfrac{\partial R}{\partial z}$$
+        </div>
+        <div class="math-block">
+          <div class="math-label">Ротор</div>
+          $$\mathrm{rot}\,\mathbf{F} = \nabla \times \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k}
+          \\ \partial_x & \partial_y & \partial_z \\ P & Q & R \end{vmatrix}$$
+        </div>
+        <p>Физический смысл: дивергенция характеризует «мощность источников» поля в точке; ротор описывает вращательный
+          характер поля.</p>
 
-  <h3>10.3 Поток векторного поля</h3>
-  <p><em>Потоком</em> векторного поля $\mathbf{F}$ через поверхность $\Sigma$ с нормалью $\mathbf{n}$ называется поверхностный интеграл второго рода:</p>
-  <div class="math-block">
-    <div class="math-label">Поток</div>
-    $$\Pi = \iint_\Sigma \mathbf{F}\cdot\mathbf{n}\,d\sigma = \iint_\Sigma (P\,dy\,dz + Q\,dx\,dz + R\,dx\,dy)$$
-  </div>
+        <h3>10.3 Поток векторного поля</h3>
+        <p><em>Потоком</em> векторного поля $\mathbf{F}$ через поверхность $\Sigma$ с нормалью $\mathbf{n}$ называется
+          поверхностный интеграл второго рода:</p>
+        <div class="math-block">
+          <div class="math-label">Поток</div>
+          $$\Pi = \iint_\Sigma \mathbf{F}\cdot\mathbf{n}\,d\sigma = \iint_\Sigma (P\,dy\,dz + Q\,dx\,dz + R\,dx\,dy)$$
+        </div>
 
-  <h3>10.4 Теорема Остроградского–Гаусса</h3>
-  <p>Поток векторного поля через замкнутую поверхность $\Sigma = \partial V$ (граница области $V$) равен тройному интегралу от дивергенции по объёму:</p>
-  <div class="math-block">
-    <div class="math-label">Теорема Остроградского</div>
-    $$\oiint_{\partial V} \mathbf{F}\cdot\mathbf{n}\,d\sigma = \iiint_V \mathrm{div}\,\mathbf{F}\;dV$$
-  </div>
-  <p>Теорема позволяет заменить сложное поверхностное интегрирование объёмным, если дивергенция поля проста, и наоборот.</p>
+        <h3>10.4 Теорема Остроградского–Гаусса</h3>
+        <p>Поток векторного поля через замкнутую поверхность $\Sigma = \partial V$ (граница области $V$) равен тройному
+          интегралу от дивергенции по объёму:</p>
+        <div class="math-block">
+          <div class="math-label">Теорема Остроградского</div>
+          $$\oiint_{\partial V} \mathbf{F}\cdot\mathbf{n}\,d\sigma = \iiint_V \mathrm{div}\,\mathbf{F}\;dV$$
+        </div>
+        <p>Теорема позволяет заменить сложное поверхностное интегрирование объёмным, если дивергенция поля проста, и
+          наоборот.</p>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 10</div>
-    <table>
-      <thead><tr><th>Понятие</th><th>Формула</th></tr></thead>
-      <tbody>
-        <tr><td>Градиент</td><td>$\nabla u = (u'_x,\,u'_y,\,u'_z)$</td></tr>
-        <tr><td>Дивергенция</td><td>$\mathrm{div}\,\mathbf{F} = P'_x + Q'_y + R'_z$</td></tr>
-        <tr><td>Поток</td><td>$\Pi = \iint_\Sigma \mathbf{F}\cdot\mathbf{n}\,d\sigma$</td></tr>
-        <tr><td>Теорема Остроградского</td><td>$\oiint_{\partial V}\mathbf{F}\cdot\mathbf{n}\,d\sigma = \iiint_V \mathrm{div}\,\mathbf{F}\,dV$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <div class="formula-table-wrap">
+          <div class="formula-table-title">Ключевые формулы — Тема 10</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Понятие</th>
+                <th>Формула</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Градиент</td>
+                <td>$\nabla u = (u'_x,\,u'_y,\,u'_z)$</td>
+              </tr>
+              <tr>
+                <td>Дивергенция</td>
+                <td>$\mathrm{div}\,\mathbf{F} = P'_x + Q'_y + R'_z$</td>
+              </tr>
+              <tr>
+                <td>Поток</td>
+                <td>$\Pi = \iint_\Sigma \mathbf{F}\cdot\mathbf{n}\,d\sigma$</td>
+              </tr>
+              <tr>
+                <td>Теорема Остроградского</td>
+                <td>$\oiint_{\partial V}\mathbf{F}\cdot\mathbf{n}\,d\sigma = \iiint_V \mathrm{div}\,\mathbf{F}\,dV$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-<hr class="topic-divider">
+      <hr class="topic-divider">
 
-<!-- ─────────────────────────── ТЕМА 11 ─────────────────────────────── -->
-<div class="topic" id="t11">
-  <div class="topic-header">
-    <div class="topic-num">11</div>
-    <div class="topic-title-block">
-      <div class="topic-label">Тема одиннадцатая</div>
-      <div class="topic-title">Потенциальные и соленоидальные векторные поля</div>
-    </div>
-  </div>
+      <!-- ─────────────────────────── ТЕМА 11 ─────────────────────────────── -->
+      <div class="topic" id="t11">
+        <div class="topic-header">
+          <div class="topic-num">11</div>
+          <div class="topic-title-block">
+            <div class="topic-label">Тема одиннадцатая</div>
+            <div class="topic-title">Потенциальные и соленоидальные векторные поля</div>
+          </div>
+        </div>
 
-  <h3>11.1 Потенциальное поле</h3>
-  <p>Векторное поле $\mathbf{F}$ называется <em>потенциальным</em> (консервативным), если существует скалярная функция $u(x,y,z)$ — <em>потенциал</em>, — такая что:</p>
-  <div class="math-block">
-    <div class="math-label">Определение потенциала</div>
-    $$\mathbf{F} = \nabla u = \mathrm{grad}\,u, \quad \text{т.е.} \quad P = \dfrac{\partial u}{\partial x},\quad Q = \dfrac{\partial u}{\partial y},\quad R = \dfrac{\partial u}{\partial z}$$
-  </div>
+        <h3>11.1 Потенциальное поле</h3>
+        <p>Векторное поле $\mathbf{F}$ называется <em>потенциальным</em> (консервативным), если существует скалярная
+          функция $u(x,y,z)$ — <em>потенциал</em>, — такая что:</p>
+        <div class="math-block">
+          <div class="math-label">Определение потенциала</div>
+          $$\mathbf{F} = \nabla u = \mathrm{grad}\,u, \quad \text{т.е.} \quad P = \dfrac{\partial u}{\partial x},\quad Q
+          = \dfrac{\partial u}{\partial y},\quad R = \dfrac{\partial u}{\partial z}$$
+        </div>
 
-  <h3>11.2 Условие потенциальности</h3>
-  <p>Поле $\mathbf{F} = (P, Q, R)$ является потенциальным тогда и только тогда, когда его <em>ротор тождественно равен нулю</em>:</p>
-  <div class="math-block">
-    <div class="math-label">Критерий</div>
-    $$\mathrm{rot}\,\mathbf{F} = \mathbf{0} \iff \dfrac{\partial R}{\partial y} = \dfrac{\partial Q}{\partial z},\quad \dfrac{\partial P}{\partial z} = \dfrac{\partial R}{\partial x},\quad \dfrac{\partial Q}{\partial x} = \dfrac{\partial P}{\partial y}$$
-  </div>
-  <div class="note">
-    <strong>Следствие.</strong> В потенциальном поле криволинейный интеграл не зависит от пути интегрирования и определяется лишь начальной и конечной точками:
-    $$\int_{AB} \mathbf{F}\cdot d\mathbf{r} = u(B) - u(A)$$
-  </div>
+        <h3>11.2 Условие потенциальности</h3>
+        <p>Поле $\mathbf{F} = (P, Q, R)$ является потенциальным тогда и только тогда, когда его <em>ротор тождественно
+            равен нулю</em>:</p>
+        <div class="math-block">
+          <div class="math-label">Критерий</div>
+          $$\mathrm{rot}\,\mathbf{F} = \mathbf{0} \iff \dfrac{\partial R}{\partial y} = \dfrac{\partial Q}{\partial
+          z},\quad \dfrac{\partial P}{\partial z} = \dfrac{\partial R}{\partial x},\quad \dfrac{\partial Q}{\partial x}
+          = \dfrac{\partial P}{\partial y}$$
+        </div>
+        <div class="note">
+          <strong>Следствие.</strong> В потенциальном поле криволинейный интеграл не зависит от пути интегрирования и
+          определяется лишь начальной и конечной точками:
+          $$\int_{AB} \mathbf{F}\cdot d\mathbf{r} = u(B) - u(A)$$
+        </div>
 
-  <h3>11.3 Нахождение потенциала</h3>
-  <p>Потенциал $u$ восстанавливается из системы уравнений $u'_x = P$, $u'_y = Q$, $u'_z = R$ последовательным интегрированием с определением произвольных функций из оставшихся условий.</p>
+        <h3>11.3 Нахождение потенциала</h3>
+        <p>Потенциал $u$ восстанавливается из системы уравнений $u'_x = P$, $u'_y = Q$, $u'_z = R$ последовательным
+          интегрированием с определением произвольных функций из оставшихся условий.</p>
 
-  <h3>11.4 Соленоидальное поле</h3>
-  <p>Векторное поле $\mathbf{F}$ называется <em>соленоидальным</em> (или бездивергентным), если его дивергенция тождественно равна нулю:</p>
-  <div class="math-block">
-    <div class="math-label">Определение</div>
-    $$\mathrm{div}\,\mathbf{F} = 0 \iff \dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} + \dfrac{\partial R}{\partial z} = 0$$
-  </div>
-  <p>По теореме Остроградского это означает, что поток соленоидального поля через любую замкнутую поверхность равен нулю: поле «не имеет источников». Типичный пример — поле несжимаемой жидкости или магнитное поле.</p>
+        <h3>11.4 Соленоидальное поле</h3>
+        <p>Векторное поле $\mathbf{F}$ называется <em>соленоидальным</em> (или бездивергентным), если его дивергенция
+          тождественно равна нулю:</p>
+        <div class="math-block">
+          <div class="math-label">Определение</div>
+          $$\mathrm{div}\,\mathbf{F} = 0 \iff \dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} +
+          \dfrac{\partial R}{\partial z} = 0$$
+        </div>
+        <p>По теореме Остроградского это означает, что поток соленоидального поля через любую замкнутую поверхность
+          равен нулю: поле «не имеет источников». Типичный пример — поле несжимаемой жидкости или магнитное поле.</p>
 
-  <h3>11.5 Связь между классами полей</h3>
-  <div class="note">
-    Любое потенциальное поле является безвихревым: $\mathrm{rot}(\nabla u) = \mathbf{0}$.
-    Любое соленоидальное поле может быть представлено как ротор некоторого поля: $\mathbf{F} = \mathrm{rot}\,\mathbf{A}$ (векторный потенциал).
-  </div>
+        <h3>11.5 Связь между классами полей</h3>
+        <div class="note">
+          Любое потенциальное поле является безвихревым: $\mathrm{rot}(\nabla u) = \mathbf{0}$.
+          Любое соленоидальное поле может быть представлено как ротор некоторого поля: $\mathbf{F} =
+          \mathrm{rot}\,\mathbf{A}$ (векторный потенциал).
+        </div>
 
-  <div class="formula-table-wrap">
-    <div class="formula-table-title">Ключевые формулы — Тема 11</div>
-    <table>
-      <thead><tr><th>Тип поля</th><th>Условие</th><th>Следствие</th></tr></thead>
-      <tbody>
-        <tr><td>Потенциальное</td><td>$\mathrm{rot}\,\mathbf{F} = \mathbf{0}$</td><td>$\exists\, u:\; \mathbf{F} = \nabla u$</td></tr>
-        <tr><td>Соленоидальное</td><td>$\mathrm{div}\,\mathbf{F} = 0$</td><td>$\oiint_S \mathbf{F}\cdot\mathbf{n}\,d\sigma = 0$</td></tr>
-        <tr><td>Интеграл в потенц. поле</td><td colspan="2">$\int_{AB}\mathbf{F}\cdot d\mathbf{r} = u(B) - u(A)$</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+        <div class="formula-table-wrap">
+          <div class="formula-table-title">Ключевые формулы — Тема 11</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Тип поля</th>
+                <th>Условие</th>
+                <th>Следствие</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Потенциальное</td>
+                <td>$\mathrm{rot}\,\mathbf{F} = \mathbf{0}$</td>
+                <td>$\exists\, u:\; \mathbf{F} = \nabla u$</td>
+              </tr>
+              <tr>
+                <td>Соленоидальное</td>
+                <td>$\mathrm{div}\,\mathbf{F} = 0$</td>
+                <td>$\oiint_S \mathbf{F}\cdot\mathbf{n}\,d\sigma = 0$</td>
+              </tr>
+              <tr>
+                <td>Интеграл в потенц. поле</td>
+                <td colspan="2">$\int_{AB}\mathbf{F}\cdot d\mathbf{r} = u(B) - u(A)$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-</div><!-- end .content -->
+    </div><!-- end .content -->
 
-<footer>
-  Высшая математика · 2 семестр · Темы 1–11 · Конспект с формулами LaTeX / MathJax
-</footer>
+    <footer>
+      Высшая математика · 2 семестр · Темы 1–11 · Конспект с формулами LaTeX / MathJax
+    </footer>
 
 </body>
+
 </html>
